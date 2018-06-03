@@ -1,5 +1,6 @@
 // Store our API endpoint inside queryUrl
 var queryUrl =  "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
+
 // Perform a GET request to the query URL
 d3.json(queryUrl, function(data) {
   // Once we get a response, send the data.features object to the createFeatures function
@@ -22,29 +23,6 @@ function createFeatures(earthquakeData) {
       "</h3>" + "<h4>Magnitude: " + feature.properties.mag + "</h4><hr><p>" + new Date(feature.properties.time) + "</p>");
   }
 
-  // function onEachFeature(feature, layer) {
-  //   layer.bindPopup("<h3>" + feature.properties.place +
-  //     "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
-  // }
-
-  // var earthquakes = L.geoJSON(earthquakeData, {
-  //   onEachFeature(feature, layer) {
-  //   layer.bindPopup("<h3>" + feature.properties.place +
-  //     "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
-  // },
-
-    // pointToLayer: function(feature, latlng){
-    //   return new L.circle(latlng,
-    //   {radius: getRadius(feature.properties.mag),
-    //   fillColor: getColor(feature.properties.mag),
-    //   fillOpacity: .6,
-    //   color: "#000",
-    //   stroke: true,
-    //   weight: .8
-    //   })
-    // }
-//  });
-
   // Create a GeoJSON layer containing the features array on the earthquakeData object
   // Run the onEachFeature function once for each piece of data in the array
   var earthquakes = L.geoJSON(earthquakeData, {
@@ -60,20 +38,6 @@ function createFeatures(earthquakeData) {
       })
     }
   });
-
-//   function getRadius(value){
-//     return value*50000
-// }
-
-// //getColor uses a conditional statement to determine what the hex code will be for a magnitude. 
-// function getColor(d) {
-//   return d > 5  ? '#F06B6B' : //#E31A1C
-//          d > 4  ? '#F0A76B' :  //#FC4E2A
-//          d > 3  ? '#F3BA4D':  //'#FD8D3C'
-//          d > 2  ? '#F3DB4D':     //'#FEB24C
-//          d > 1  ? '#E1F34D':  //'#FED976'
-//                     '#B7F34D';   //'#FFEDA0'
-// }
 
   // Sending our earthquakes layer to the createMap function
   createMap(earthquakes);
@@ -122,49 +86,21 @@ function createMap(earthquakes) {
   legend.onAdd = function(myMap) {
     var div = L.DomUtil.create("div", "info legend"),
        grades = [0, 1, 2, 3, 4, 5],
-    // var limits = geojson.options.limits;
-    // var colors = geojson.options.colors;
-        labels = [];
+       labels = [];
 
         div.innerHTML += '<p><u>Magnitude</u></p>'
-  // for (var i = 0; i < grades.length; i++){
-  //     div.innerHTML += '<i style = "background":' + getColor(grades[i] + 1) + '"></i>' + 
-  //     grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : "+");
-  // }
+
   for (var i = 0; i < grades.length; i++) {
     div.innerHTML +=
         '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
         grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
 }
   return div;
-
-    // Add min & max
-    // var legendInfo = "<h1>Median Income</h1>" +
-    //   "<div class=\"labels\">" +
-    //     "<div class=\"min\">" + limits[0] + "</div>" +
-    //     "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
-    //   "</div>";
-
-    // var legendInfo = "<i style = "background":' + getColor(grades[i] + 1) + '"></i>' + 
-    // grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>'"
-
-
-    // div.innerHTML = legendInfo;
-
-    // for (var i = 0; i < degree.length; i++){
-
-    // }
-    // limits.forEach(function(limit, index) {
-    //   labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
-    // });
-
-    // div.innerHTML += "<ul>" + labels.join("") + "</ul>";
-    //return div;
   };
 
     // Adding legend to the map
     legend.addTo(myMap);
-} //end of CreateMap function.
+}   //end of CreateMap function.
 
 
 function getRadius(value){
