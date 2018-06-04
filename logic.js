@@ -136,12 +136,12 @@ function createMap(earthquakes,tectonicPlates) {
 
 //getColor uses a conditional statement to determine what the hex code will be for a magnitude. 
 function getColor(d) {
-  return d > 5  ? '#F06B6B' : //#E31A1C
-         d > 4  ? '#F0A76B' :  //#FC4E2A
-         d > 3  ? '#F3BA4D':  //'#FD8D3C'
-         d > 2  ? '#F3DB4D':     //'#FEB24C
-         d > 1  ? '#E1F34D':  //'#FED976'
-                    '#B7F34D';   //'#FFEDA0'
+  return d > 5  ? '#F06B6B' : 
+         d > 4  ? '#F0A76B' :  
+         d > 3  ? '#F3BA4D':  
+         d > 2  ? '#F3DB4D':     
+         d > 1  ? '#E1F34D':  
+                    '#B7F34D';   
   }
 
 function getRadius(value){
