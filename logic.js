@@ -28,7 +28,7 @@ d3.json(queryUrl, function(data) {
       // Give each feature a popup describing the place and time of the earthquake
     function onEachFeature(feature, layer) {
       layer.bindPopup("<h3>" + feature.properties.place +
-      "</h3>" + "<h4>Magnitude: " + feature.properties.mag + "</h4><hr><p>" + new Date(feature.properties.time) + "</p>");
+      "</h3>" + "<h4>עוצמה: " + feature.properties.mag + "</h4><hr><p>" + new Date(feature.properties.time) + "</p>");
       }
 
    // Add fault lines to map
@@ -90,15 +90,15 @@ function createMap(earthquakes,tectonicPlates) {
 
   // Create overlay object to hold our overlay layer
   var overlayMaps = {
-    "Earthquakes": earthquakes,
-    "Fault Lines": tectonicPlates
+    "רעידות אדמה": earthquakes,
+    "קווי שבר": tectonicPlates
     //faultLayer
   };
 
   // Create our map, giving it the streetmap and earthquakes layers to display on load
   var myMap = L.map("map", {
     center: [
-      37.09, -95.71
+      31.34, 35.00
     ],
     zoom: 5,
     layers: [streetmap, earthquakes, satellitemap, lightmap, darkmap]
@@ -120,7 +120,7 @@ function createMap(earthquakes,tectonicPlates) {
        grades = [0, 1, 2, 3, 4, 5],
        labels = [];
 
-        div.innerHTML += '<p><u>Magnitude</u></p>'
+        div.innerHTML += '<p><u>עוצמה</u></p>'
 
   for (var i = 0; i < grades.length; i++) {
     div.innerHTML +=
