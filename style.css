@@ -13,8 +13,8 @@ html {
 
 /* CSS from the Leaflet-Choropleth documentation */
 .legend {
-  padding: 6px 8px;
-  font: 12px Arial, Helvetica, sans-serif;
+  padding: 40px 8px;
+  font: 15px Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #555;
   background: #fff;
